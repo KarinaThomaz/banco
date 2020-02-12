@@ -17,6 +17,7 @@ public class Main {
         Contas conta = new Contas(001, cliente, 500.00);
         Poupanca poupanca = new Poupanca(conta.getNumConta(), cliente, conta.getSaldo(), 0.03);
         Corrente corrente = new Corrente(conta.getNumConta(), cliente, conta.getSaldo());
+        Cheque cheque = new Cheque();
 
         System.out.println("Qual conta deseja movimentar?");
         System.out.println("1 - Poupança");
@@ -65,11 +66,14 @@ public class Main {
                 String pagamento;
                 System.out.println("Entre com o valor do cheque");
                 qtde=quantidade.nextFloat();
+                cheque.setValor(qtde);
                 System.out.println("Entre com o banco emissor");
                 bc=bancoEmissor.nextInt();
+                cheque.setBanco(bc);
                 System.out.println("Entre com a data para pagamento");
                 data=dataPagamento.nextLine();
-                corrente.depositarCheques(qtde,bc,data);
+                cheque.setDataPagamento(data);
+                corrente.depositarCheques(cheque);
             } else if(op==4){
                 corrente.consultarSaldo();
             }else{
@@ -79,5 +83,4 @@ public class Main {
             System.out.println("Opção inválida!");
         }
     }
-
 }

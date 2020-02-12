@@ -10,26 +10,12 @@ public class Poupanca extends Contas {
         this.juros = juros;
     }
 
-    @Override
-    public void consultarSaldo() {
-        super.consultarSaldo();
-    }
-
-    @Override
-    public void depositar(float qtdeDinheiro) {
-        super.depositar(qtdeDinheiro);
-    }
-
-    @Override
-    public void sacar(float qtdeDinheiro) {
-        super.sacar(qtdeDinheiro);
-    }
-
     public void recolherJuros(){
         double saldoConta = getSaldo();
-        saldoConta+=(saldoConta*juros*2);
+        saldoConta+=(getSaldo()*this.juros*2);
+        setSaldo(saldoConta);
         System.out.println("Meses de recolhimento: 2");
-        System.out.println("Valor recolhido: "+saldoConta);
+        System.out.println("Novo saldo: "+getSaldo());
     }
 
     public double getJuros() {

@@ -11,24 +11,13 @@ public class Corrente extends Contas {
     }
 
     @Override
-    public void consultarSaldo() {
-        super.consultarSaldo();
-    }
-
-    @Override
-    public void depositar(float qtdeDinheiro) {
-        super.depositar(qtdeDinheiro);
-    }
-
-    @Override
-    public void sacar(float qtdeDinheiro) {
+    public void sacar(double qtdeDinheiro) {
         double saldoConta=getSaldo();
+        float limite=1000;
         if(qtdeDinheiro<=saldoConta){
-            saldoConta-=qtdeDinheiro;
-            System.out.println("Saque realizado com sucesso");
-            System.out.println("Novo saldo: "+saldoConta);
-        }else{
-            double chequeEspecial=0;
+            super.sacar(qtdeDinheiro);
+        }else if (qtdeDinheiro<=limite+getSaldo()){
+           // double chequeEspecial=0;
             Scanner operacao = new Scanner(System.in);
             int opCE;
             System.out.println("Saldo insuficiente!");
@@ -38,9 +27,7 @@ public class Corrente extends Contas {
             System.out.println("2 - Não");
             opCE=operacao.nextInt();
             if(opCE==1){
-                float limite=1000;
                 limite-=qtdeDinheiro-getSaldo();
-
                 setSaldo(0);
                 System.out.println("Saldo realizado com sucesso!");
                 System.out.println("Novo saldo: "+getSaldo());
@@ -50,11 +37,13 @@ public class Corrente extends Contas {
             }else{
                 System.out.println("Opção inválida!");
             }
+        }else{
+            System.out.println("Saldo insuficiente!");
         }
     }
 
-    public void depositarCheques(float valor, int bancoEmissor, String dataPagamento){
-        super.depositar(valor);
-        //System.out.println();
+    public void depositarCheques(Cheque cheque){
+        super.depositar(cheque.getValor());
+        System.out.println(getSaldo());
     }
 }

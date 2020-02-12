@@ -13,28 +13,28 @@ public class Contas {
         this.saldo = saldo;
     }
 
-    public void depositar(float qtdeDinheiro){
+    public void depositar(double qtdeDinheiro){
         if(qtdeDinheiro>0){
-            saldo+=qtdeDinheiro;
+            this.saldo+=qtdeDinheiro;
             System.out.println("Depósito realizado com sucesso!");
-            System.out.println("Novo saldo "+saldo);
         }else{
             System.out.println("Valor inválido!");
         }
     }
 
-    public void sacar(float qtdeDinheiro){
-        if(qtdeDinheiro<saldo){
-            saldo-=qtdeDinheiro;
+    public void sacar(double qtdeDinheiro){
+        if(qtdeDinheiro<=this.saldo){
+            this.saldo-=qtdeDinheiro;
+            setSaldo(this.saldo);
             System.out.println("Saque realizado com sucesso");
-            System.out.println("Novo saque: "+ saldo);
+            System.out.println("Novo saldo: "+ getSaldo());
         }else{
             System.out.println("Saldo insuficiente!");
         }
     }
 
     public void consultarSaldo(){
-        System.out.println("Seu saldo é: "+saldo);
+        System.out.println("Seu saldo é: "+this.saldo);
     }
 
     public int getNumConta() {
